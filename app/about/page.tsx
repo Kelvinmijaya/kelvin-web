@@ -1,5 +1,3 @@
 export default function about() {
-    return(
-        <p>love ayang</p>
-    )
+  return <div>about ni</div>
 }
