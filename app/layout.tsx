@@ -7,14 +7,34 @@ import Footer from './components/footer'
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
-  title: 'Kelvin Mijaya Personal Web',
+  title: 'KelvinMijaya.com',
   description:
     'Kelvin Mijaya personal web includes biography, personal achievement, personal branding, portfolio and playground for the newest web technology',
 }
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
+    <html lang="en" className="light">
+      <head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body
         className={(inter.className, 'flex h-full bg-zinc-50 dark:bg-black')}
       >
@@ -29,7 +49,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               <div className="top-0 z-10 h-16 pt-6">
                 <div className="sm:px-8 top-[var(--header-top,theme(spacing.6))] w-full">
                   <div className="mx-auto w-full max-w-7xl lg:px-8">
-                    <div className="relative px-4 sm:px-8 lg:px-12">
+                    <div className="relative px-6 sm:px-8 lg:px-12">
                       <div className="mx-auto max-w-2xl lg:max-w-5xl">
                         <NavBar />
                       </div>
@@ -41,7 +61,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <main className="flex-auto">
               <div className="sm:px-8 mt-16 sm:mt-32">
                 <div className="mx-auto w-full max-w-7xl lg:px-8">
-                  <div className="relative px-4 sm:px-8 lg:px-12">
+                  <div className="relative px-6 sm:px-8 lg:px-12">
                     <div className="mx-auto max-w-2xl lg:max-w-5xl">
                       {children}
                     </div>
@@ -53,7 +73,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               <div className="sm:px-8">
                 <div className="mx-auto w-full max-w-7xl lg:px-8">
                   <div className="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40">
-                    <div className="relative px-4 sm:px-8 lg:px-12">
+                    <div className="relative px-6 sm:px-8 lg:px-12">
                       <div className="mx-auto max-w-2xl lg:max-w-5xl">
                         <Footer />
                       </div>
