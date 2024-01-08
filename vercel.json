@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    {"source": "/api/", "destination": "kelvin-web-api.vercel.app/api/"}
+  ]
+}
