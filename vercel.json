@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/api/",
-      "destination": "https://kelvin-web-api.vercel.app/api/"
+      "source": "/api",
+      "destination": "https://kelvin-web-api.vercel.app/api/admin"
     },
     {
       "source": "/api/:match*",
