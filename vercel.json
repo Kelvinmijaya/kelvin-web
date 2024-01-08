@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:match*",
-      "destination": "https://kelvin-web-api.vercel.com/api/:match*"
+      "destination": "https://kelvin-web-api.vercel.app/api/:match*"
     },
     {"source": "/", "destination": "https://kelvin-web.vercel.app/"},
     {
