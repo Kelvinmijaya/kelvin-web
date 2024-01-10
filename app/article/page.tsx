@@ -3,13 +3,8 @@ export default function Article() {
     <div className="mx-auto max-w-2xl lg:max-w-5xl">
       <header className="max-w-2xl">
         <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          Writing on software design, company building, and the aerospace
-          industry.
+          My personal library of articles and bookmarks
         </h1>
-        <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          All of my long-form thoughts on programming, leadership, product
-          design, and more, collected in chronological order.
-        </p>
       </header>
       <div className="mt-16 sm:mt-20">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
@@ -18,16 +13,14 @@ export default function Article() {
               <div className="md:col-span-3 group relative flex flex-col items-start">
                 <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                   <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
-                  <a href="/articles/crafting-a-design-system-for-a-multiplanetary-future">
+                  <a href="https://nextjs.org/conf">
                     <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-                    <span className="relative z-10">
-                      Crafting a design system for a multiplanetary future
-                    </span>
+                    <span className="relative z-10">Next.JS Conf 2023</span>
                   </a>
                 </h2>
                 <time
                   className="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5"
-                  dateTime="2022-09-05"
+                  dateTime="2023-10-26"
                 >
                   <span
                     className="absolute inset-y-0 left-0 flex items-center"
@@ -35,19 +28,18 @@ export default function Article() {
                   >
                     <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
                   </span>
-                  September 5, 2022
+                  October 26, 2023
                 </time>
                 <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  Most companies try to stay ahead of the curve when it comes to
-                  visual design, but for Planetaria we needed to create a brand
-                  that would still inspire us 100 years from now when humanity
-                  has spread across our entire solar system.
+                  Lots of interesting improvement on next js like the power of
+                  server components, using app router in production, optimizing
+                  third party library loading, improve DEVX and so on.
                 </p>
                 <div
                   aria-hidden="true"
-                  className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+                  className="relative z-10 mt-4 flex items-center text-sm font-medium text-red-400"
                 >
-                  Read article
+                  Watch
                   <svg
                     viewBox="0 0 16 16"
                     fill="none"
@@ -56,34 +48,34 @@ export default function Article() {
                   >
                     <path
                       d="M6.75 5.75 9.25 8l-2.5 2.25"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </div>
               </div>
               <time
                 className="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
-                dateTime="2022-09-05"
+                dateTime="2023-10-26"
               >
-                September 5, 2022
+                October 26, 2023
               </time>
             </article>
             <article className="md:grid md:grid-cols-4 md:items-baseline">
               <div className="md:col-span-3 group relative flex flex-col items-start">
                 <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                   <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
-                  <a href="/articles/introducing-animaginary">
+                  <a href="https://youtu.be/ZKH3DLT4BKw?si=MarL7cXfMeC_Jjkc">
                     <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
                     <span className="relative z-10">
-                      Introducing Animaginary: High performance web animations
+                      The Cost of Javascript 2023
                     </span>
                   </a>
                 </h2>
                 <time
                   className="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500 pl-3.5"
-                  dateTime="2022-09-02"
+                  dateTime="2023-05-22"
                 >
                   <span
                     className="absolute inset-y-0 left-0 flex items-center"
@@ -91,19 +83,19 @@ export default function Article() {
                   >
                     <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
                   </span>
-                  September 2, 2022
+                  June 22, 2023
                 </time>
                 <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  When you&apos;re building a website for a company as ambitious
-                  as Planetaria, you need to make an impression. I wanted people
-                  to visit our website and see animations that looked more
-                  realistic than reality itself.
+                  Copyright from Addy Osmani on youtube. He explain about the
+                  cost of javascript. when we want to improve and optimize our
+                  web performance, we need to understand how to reduce
+                  long-task, complexity of the framework that we use, etc.
                 </p>
                 <div
                   aria-hidden="true"
-                  className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+                  className="relative z-10 mt-4 flex items-center text-sm font-medium text-red-400"
                 >
-                  Read article
+                  Watch
                   <svg
                     viewBox="0 0 16 16"
                     fill="none"
@@ -112,28 +104,28 @@ export default function Article() {
                   >
                     <path
                       d="M6.75 5.75 9.25 8l-2.5 2.25"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </div>
               </div>
               <time
                 className="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
-                dateTime="2022-09-02"
+                dateTime="2023-05-22"
               >
-                September 2, 2022
+                June 22, 2023
               </time>
             </article>
             <article className="md:grid md:grid-cols-4 md:items-baseline">
               <div className="md:col-span-3 group relative flex flex-col items-start">
                 <h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                   <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl"></div>
-                  <a href="/articles/rewriting-the-cosmos-kernel-in-rust">
+                  <a href="https://medium.com/tokopedia-engineering/my-memes-story-being-unprepared-software-engineer-team-lead-dde5700bb504">
                     <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
                     <span className="relative z-10">
-                      Rewriting the cosmOS kernel in Rust
+                      My Meme Story being unprepared Software Engineer Lead
                     </span>
                   </a>
                 </h2>
@@ -147,19 +139,17 @@ export default function Article() {
                   >
                     <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
                   </span>
-                  July 14, 2022
+                  April 23, 2019
                 </time>
                 <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  When we released the first version of cosmOS last year, it was
-                  written in Go. Go is a wonderful programming language, but
-                  it&apos;s been a while since I&apos;ve seen an article on the
-                  front page of Hacker News about rewriting some important tool
-                  in Go and I see articles on there about rewriting things in
-                  Rust every single week.
+                  Yes, meme above show what I will think of when I&apos;m
+                  promoted to Software Engineer Team Lead, be like a Leonidas
+                  with strong leadership and solid strategy. Got my own team,
+                  gonna be the best; that&apos;s what I think of.
                 </p>
                 <div
                   aria-hidden="true"
-                  className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+                  className="relative z-10 mt-4 flex items-center text-sm font-medium text-red-400"
                 >
                   Read article
                   <svg
@@ -170,9 +160,9 @@ export default function Article() {
                   >
                     <path
                       d="M6.75 5.75 9.25 8l-2.5 2.25"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     ></path>
                   </svg>
                 </div>
@@ -181,7 +171,7 @@ export default function Article() {
                 className="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
                 dateTime="2022-07-14"
               >
-                July 14, 2022
+                April 23, 2019
               </time>
             </article>
           </div>
