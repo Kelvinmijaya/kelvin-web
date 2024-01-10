@@ -33,7 +33,11 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link
+          rel="manifest"
+          href="/site.webmanifest"
+          crossOrigin="use-credentials"
+        />
       </head>
       <body
         className={(inter.className, 'flex h-full bg-zinc-50 dark:bg-black')}
