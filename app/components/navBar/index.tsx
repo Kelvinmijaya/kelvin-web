@@ -1,11 +1,17 @@
 'use client'
 
+import {Fragment, useState} from 'react'
+import {Dialog, Transition} from '@headlessui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
 
 import PP from './images/kelvinheader.jpg'
 import IconGithub from './images/icon-github.svg'
+
+function classNames(...classes: any[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export default function NavBar() {
   interface navigationList {
@@ -18,6 +24,15 @@ export default function NavBar() {
     {title: 'Portfolio', path: '/portfolio'},
     {title: 'Article', path: '/article'},
   ]
+  let [isOpen, setIsOpen] = useState(false)
+
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
 
   return (
     <div className="relative flex gap-4">
@@ -36,13 +51,11 @@ export default function NavBar() {
         </div>
       </div>
       <div className="flex flex-1 justify-end md:justify-center">
-        <div className="pointer-events-auto md:hidden" data-headlessui-state="">
+        <div className="relative inline-block text-left pointer-events-auto md:hidden">
           <button
-            className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
             type="button"
-            aria-expanded="false"
-            data-headlessui-state=""
-            id="headlessui-popover-button-:R2miqla:"
+            onClick={openModal}
+            className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
           >
             Menu
             <svg
@@ -59,23 +72,60 @@ export default function NavBar() {
               ></path>
             </svg>
           </button>
+          <Transition appear show={isOpen} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeModal}>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="fixed inset-0 bg-black/30" />
+              </Transition.Child>
+
+              <div className="fixed inset-0 overflow-y-auto">
+                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
+                  >
+                    <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                      {navList.map((list: navigationList, i) => {
+                        return (
+                          <div
+                            className="relative grid bg-white lg:grid-cols-2"
+                            key={`nav-list-${i}`}
+                          >
+                            <Link
+                              onClick={closeModal}
+                              className={` group flex w-full items-center text-center rounded-md px-4 py-4 text-sm ${
+                                list.path === pathname
+                                  ? 'text-red-400 dark:text-red-300'
+                                  : 'text-gray-900 hover:text-red-400 dark:hover:text-red-300'
+                              }`}
+                              href={list.path}
+                            >
+                              {list.title}
+                            </Link>
+                          </div>
+                        )
+                      })}
+                    </Dialog.Panel>
+                  </Transition.Child>
+                </div>
+              </div>
+            </Dialog>
+          </Transition>
         </div>
-        <div
-          style={{
-            position: 'fixed',
-            top: '1px',
-            left: '1px',
-            width: '1px',
-            height: 0,
-            padding: 0,
-            margin: '-1px',
-            overflow: 'hidden',
-            clip: 'rect(0, 0, 0, 0)',
-            whiteSpace: 'nowrap',
-            borderWidth: 0,
-            display: 'none',
-          }}
-        ></div>
+
         <nav className="pointer-event-auto hidden md:block">
           <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
             {navList.map((list: navigationList, i) => {
