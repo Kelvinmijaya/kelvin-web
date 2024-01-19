@@ -1,6 +1,6 @@
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
-import './globals.css'
+import '../globals.css'
 import NavBar from './components/navBar'
 import Footer from './components/footer'
 
@@ -39,9 +39,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           crossOrigin="use-credentials"
         />
       </head>
-      <body
-        className={(inter.className, 'flex h-full bg-zinc-50 dark:bg-black')}
-      >
+      <body className={(inter.className, 'flex h-full bg-zinc-50')}>
         <div className="flex w-full">
           <div className="fixed inset-0 flex justify-center sm:px-8">
             <div className="flex w-full max-w-7xl lg:px-8">
