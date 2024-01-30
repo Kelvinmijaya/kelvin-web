@@ -73,6 +73,7 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}: SidebarProps) => {
             height={48}
             src={KelvinHeader}
             alt="Logo"
+            priority={true}
           />
         </Link>
 

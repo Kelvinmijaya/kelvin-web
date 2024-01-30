@@ -1,4 +1,7 @@
-type Package = {
+'use client'
+import {useEffect, useState, useCallback} from 'react'
+
+interface Articles {
   id: string
   title: string
   url: string
@@ -8,24 +11,71 @@ type Package = {
   created_at: string
 }
 
-const packageData: Package[] = [
-  {
-    id: '1',
-    title: 'asd',
-    url: 'asd',
-    content: 'asd',
-    type: 'text',
-    updated_at: 'asd',
-    created_at: 'asd',
-  },
-]
+interface ApiResponse {
+  data: Articles[]
+  nextPage: number | null // Use appropriate type for your cursor (e.g., string for timestamps)
+}
 
 export default function Article() {
+  const api = process.env.NEXT_PUBLIC_API_URL
+  const limit = 10
+  const [articles, setArticles] = useState<Articles[]>([])
+  // State for form loading
+  const [loading, setLoading] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1) // Use appropriate type for your cursor
+
+  const fetchArticles = useCallback(async () => {
+    console.log('current page...', currentPage)
+
+    try {
+      setLoading(true)
+      const response = await fetch(`${api}/article/list?num=${limit}`, {
+        mode: 'cors',
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        console.log('Posts fetched:', data)
+        setArticles(data)
+      } else {
+        throw new Error('Failed to fetch')
+      }
+    } catch (error) {
+      // Handle login error
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('loading...', loading)
+    fetchArticles()
+  }, [fetchArticles, currentPage])
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1)
+  }
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) =>
+      prevPage !== null && prevPage > 1 ? prevPage - 1 : 1,
+    )
+  }
+
+  console.log('Component rendered', currentPage)
+
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
         {/* <!-- Alerts Item --> */}
-        <div className="flex border-l-6 border-[#FFA70B] bg-[#FFA70B] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
+        {/* <div className="flex border-l-6 border-[#FFA70B] bg-[#FFA70B] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
           <div className="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-[#FFA70B] bg-opacity-30">
             <svg
               width="19"
@@ -50,10 +100,10 @@ export default function Article() {
               text ever since the 1500s, when
             </p>
           </div>
-        </div>
+        </div> */}
 
         {/* <!-- Alerts Item --> */}
-        <div className="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
+        {/* <div className="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
           <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]">
             <svg
               width="16"
@@ -78,10 +128,10 @@ export default function Article() {
               industry.
             </p>
           </div>
-        </div>
+        </div> */}
 
         {/* <!-- Alerts Item --> */}
-        <div className="flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
+        {/* <div className="flex w-full border-l-6 border-[#F87171] bg-[#F87171] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
           <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#F87171]">
             <svg
               width="13"
@@ -107,7 +157,7 @@ export default function Article() {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
 
         <table className="w-full table-auto">
           <thead>
@@ -130,27 +180,24 @@ export default function Article() {
             </tr>
           </thead>
           <tbody>
-            {packageData.map((packageItem, key) => (
+            {articles.map((articlesItem, key) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    ID: {packageItem.id}
-                  </h5>
-                  <p className="text-sm">{packageItem.title}</p>
+                  <p className="text-sm">{articlesItem.title}</p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">
-                    {packageItem.type}
+                    {articlesItem.type}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">
-                    {packageItem.content}
+                    {articlesItem.content}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="text-black dark:text-white">
-                    {packageItem.url}
+                    {articlesItem.url}
                   </p>
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
@@ -226,6 +273,20 @@ export default function Article() {
             ))}
           </tbody>
         </table>
+        <div>
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 1 || loading}
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleNextPage}
+            disabled={!articles.length || loading}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   )
