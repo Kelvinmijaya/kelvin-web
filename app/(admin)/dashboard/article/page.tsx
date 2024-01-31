@@ -179,9 +179,10 @@ export default function Article() {
             </thead>
             <tbody>
               {data &&
-                data.map((page) => {
-                  return page.data.map(
-                    (articlesItem: Articles, key: number) => (
+                data.map(
+                  (page) =>
+                    page.data &&
+                    page.data.map((articlesItem: Articles, key: number) => (
                       <tr key={key}>
                         <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                           <p className="text-sm">{articlesItem.title}</p>
@@ -270,9 +271,8 @@ export default function Article() {
                           </div>
                         </td>
                       </tr>
-                    ),
-                  )
-                })}
+                    )),
+                )}
             </tbody>
           </table>
         )}
