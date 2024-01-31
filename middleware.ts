@@ -44,8 +44,8 @@ export async function middleware(request: NextRequest) {
     }
   } catch (error) {
     // Handle error auth fetch
-
-    return NextResponse.redirect(new URL('/login', request.url))
+    console.error('Error fetch auth')
+    return NextResponse.next()
   }
 
   // Fallback
@@ -53,27 +53,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    {
-      source: '/dashboard/:path*',
-      missing: [
-        {type: 'header', key: 'next-router-prefetch'},
-        {type: 'header', key: 'purpose', value: 'prefetch'},
-      ],
-    },
-    {
-      source: '/login',
-      missing: [
-        {type: 'header', key: 'next-router-prefetch'},
-        {type: 'header', key: 'purpose', value: 'prefetch'},
-      ],
-    },
-  ],
+  matcher: ['/dashboard/:path*', '/login'],
 }
