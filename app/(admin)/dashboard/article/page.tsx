@@ -1,5 +1,7 @@
 'use client'
+import {useState} from 'react'
 import useSWRInfinite from 'swr/infinite'
+import dynamic from 'next/dynamic'
 
 interface Articles {
   id: string
@@ -22,6 +24,19 @@ interface SWRFormat {
   isLoading: boolean
   size: number
   setSize: any
+  mutate: any
+}
+
+interface DialogDetail {
+  category: string
+  isOpen: boolean
+  id: number
+}
+
+interface PopupDialogProps {
+  mutate: any
+  openDialog: DialogDetail
+  setOpen: (arg0: DialogDetail) => void
 }
 
 const fetcher = async (url: string) =>
@@ -48,21 +63,30 @@ const getKey = (pageIndex: number, previousPageData: DataFormat<Articles>) => {
   }`
 }
 
+const DynamicPopupDialog = dynamic<PopupDialogProps>(
+  () => import('./components/popupDialog'),
+  {
+    ssr: false,
+  },
+)
+
 export default function Article() {
+  const [openDialog, setOpenDialog] = useState({
+    category: '',
+    isOpen: false,
+    id: -1,
+  })
   // fetch data article
-  const {data, error, isLoading, size, setSize}: SWRFormat = useSWRInfinite(
-    getKey,
-    fetcher,
-    {
+  const {data, error, isLoading, size, setSize, mutate}: SWRFormat =
+    useSWRInfinite(getKey, fetcher, {
       initialSize: 1,
-      revalidateAll: false,
+      revalidateAll: true,
       revalidateFirstPage: false,
-      revalidateIfStale: false,
-      revalidateOnReconnect: false,
+      revalidateIfStale: true,
+      revalidateOnReconnect: true,
       persistSize: false,
       parallel: false,
-    },
-  )
+    })
 
   if (error) {
     return (
@@ -99,62 +123,6 @@ export default function Article() {
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="max-w-full overflow-x-auto">
-        {/* <!-- Alerts Item --> */}
-        {/* <div className="flex border-l-6 border-[#FFA70B] bg-[#FFA70B] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
-          <div className="mr-5 flex h-9 w-9 items-center justify-center rounded-lg bg-[#FFA70B] bg-opacity-30">
-            <svg
-              width="19"
-              height="16"
-              viewBox="0 0 19 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1.50493 16H17.5023C18.6204 16 19.3413 14.9018 18.8354 13.9735L10.8367 0.770573C10.2852 -0.256858 8.70677 -0.256858 8.15528 0.770573L0.156617 13.9735C-0.334072 14.8998 0.386764 16 1.50493 16ZM10.7585 12.9298C10.7585 13.6155 10.2223 14.1433 9.45583 14.1433C8.6894 14.1433 8.15311 13.6155 8.15311 12.9298V12.9015C8.15311 12.2159 8.6894 11.688 9.45583 11.688C10.2223 11.688 10.7585 12.2159 10.7585 12.9015V12.9298ZM8.75236 4.01062H10.2548C10.6674 4.01062 10.9127 4.33826 10.8671 4.75288L10.2071 10.1186C10.1615 10.5049 9.88572 10.7455 9.50142 10.7455C9.11929 10.7455 8.84138 10.5028 8.79579 10.1186L8.13574 4.75288C8.09449 4.33826 8.33984 4.01062 8.75236 4.01062Z"
-                fill="#FBBF24"
-              ></path>
-            </svg>
-          </div>
-          <div className="w-full">
-            <h5 className="mb-3 text-lg font-semibold text-[#9D5425]">
-              Attention needed
-            </h5>
-            <p className="leading-relaxed text-[#D0915C]">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry&apos;s standard dummy
-              text ever since the 1500s, when
-            </p>
-          </div>
-        </div> */}
-
-        {/* <!-- Alerts Item --> */}
-        {/* <div className="flex w-full border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[15%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-30 md:p-9">
-          <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-[#34D399]">
-            <svg
-              width="16"
-              height="12"
-              viewBox="0 0 16 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15.2984 0.826822L15.2868 0.811827L15.2741 0.797751C14.9173 0.401867 14.3238 0.400754 13.9657 0.794406L5.91888 9.45376L2.05667 5.2868C1.69856 4.89287 1.10487 4.89389 0.747996 5.28987C0.417335 5.65675 0.417335 6.22337 0.747996 6.59026L0.747959 6.59029L0.752701 6.59541L4.86742 11.0348C5.14445 11.3405 5.52858 11.5 5.89581 11.5C6.29242 11.5 6.65178 11.3355 6.92401 11.035L15.2162 2.11161C15.5833 1.74452 15.576 1.18615 15.2984 0.826822Z"
-                fill="white"
-                stroke="white"
-              ></path>
-            </svg>
-          </div>
-          <div className="w-full">
-            <h5 className="mb-3 text-lg font-semibold text-black dark:text-[#34D399] ">
-              Message Sent Successfully
-            </h5>
-            <p className="text-base leading-relaxed text-body">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
-          </div>
-        </div> */}
-
         {isLoading ? (
           <div className="flex h-screen items-center justify-center bg-white">
             <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
@@ -203,7 +171,17 @@ export default function Article() {
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                           <div className="flex items-center space-x-3.5">
-                            <button className="hover:text-primary">
+                            <button className="hover:text-primary">Edit</button>
+                            <button
+                              onClick={() => {
+                                setOpenDialog({
+                                  category: 'detail',
+                                  isOpen: true,
+                                  id: Number(articlesItem.id),
+                                })
+                              }}
+                              className="hover:text-primary"
+                            >
                               <svg
                                 className="fill-current"
                                 width="18"
@@ -222,7 +200,16 @@ export default function Article() {
                                 />
                               </svg>
                             </button>
-                            <button className="hover:text-primary">
+                            <button
+                              onClick={() => {
+                                setOpenDialog({
+                                  category: 'delete',
+                                  isOpen: true,
+                                  id: Number(articlesItem.id),
+                                })
+                              }}
+                              className="hover:text-primary"
+                            >
                               <svg
                                 className="fill-current"
                                 width="18"
@@ -249,25 +236,6 @@ export default function Article() {
                                 />
                               </svg>
                             </button>
-                            <button className="hover:text-primary">
-                              <svg
-                                className="fill-current"
-                                width="18"
-                                height="18"
-                                viewBox="0 0 18 18"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M16.8754 11.6719C16.5379 11.6719 16.2285 11.9531 16.2285 12.3187V14.8219C16.2285 15.075 16.0316 15.2719 15.7785 15.2719H2.22227C1.96914 15.2719 1.77227 15.075 1.77227 14.8219V12.3187C1.77227 11.9812 1.49102 11.6719 1.12539 11.6719C0.759766 11.6719 0.478516 11.9531 0.478516 12.3187V14.8219C0.478516 15.7781 1.23789 16.5375 2.19414 16.5375H15.7785C16.7348 16.5375 17.4941 15.7781 17.4941 14.8219V12.3187C17.5223 11.9531 17.2129 11.6719 16.8754 11.6719Z"
-                                  fill=""
-                                />
-                                <path
-                                  d="M8.55074 12.3469C8.66324 12.4594 8.83199 12.5156 9.00074 12.5156C9.16949 12.5156 9.31012 12.4594 9.45074 12.3469L13.4726 8.43752C13.7257 8.1844 13.7257 7.79065 13.5007 7.53752C13.2476 7.2844 12.8539 7.2844 12.6007 7.5094L9.64762 10.4063V2.1094C9.64762 1.7719 9.36637 1.46252 9.00074 1.46252C8.66324 1.46252 8.35387 1.74377 8.35387 2.1094V10.4063L5.40074 7.53752C5.14762 7.2844 4.75387 7.31252 4.50074 7.53752C4.24762 7.79065 4.27574 8.1844 4.50074 8.43752L8.55074 12.3469Z"
-                                  fill=""
-                                />
-                              </svg>
-                            </button>
                           </div>
                         </td>
                       </tr>
@@ -288,6 +256,11 @@ export default function Article() {
           Load More
         </button>
       )}
+      <DynamicPopupDialog
+        mutate={mutate}
+        openDialog={openDialog}
+        setOpen={setOpenDialog}
+      />
     </div>
   )
 }
