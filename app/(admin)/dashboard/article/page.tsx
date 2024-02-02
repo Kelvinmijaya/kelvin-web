@@ -1,5 +1,6 @@
 'use client'
 import {useState} from 'react'
+import Link from 'next/link'
 import useSWRInfinite from 'swr/infinite'
 import dynamic from 'next/dynamic'
 
@@ -171,7 +172,12 @@ export default function Article() {
                         </td>
                         <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                           <div className="flex items-center space-x-3.5">
-                            <button className="hover:text-primary">Edit</button>
+                            <Link
+                              href={`/dashboard/article/update/${articlesItem.id}`}
+                              className="hover:text-primary"
+                            >
+                              Edit
+                            </Link>
                             <button
                               onClick={() => {
                                 setOpenDialog({
