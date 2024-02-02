@@ -2,9 +2,11 @@
 
 import {useEffect, useRef, useState} from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import {useRouter} from 'next/navigation'
 
 const DropdownUser = () => {
+  const api = process.env.NEXT_PUBLIC_API_URL
+  const router = useRouter()
   const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const trigger = useRef<any>(null)
@@ -35,6 +37,28 @@ const DropdownUser = () => {
     document.addEventListener('keydown', keyHandler)
     return () => document.removeEventListener('keydown', keyHandler)
   })
+
+  const doLogout = async () => {
+    try {
+      // Fetch data from your authentication endpoint
+      const response = await fetch(`${api}/logout`, {
+        mode: 'cors',
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+      })
+
+      if (response.ok) {
+        // Handle successful login
+        await router.push('/login')
+      }
+    } catch (error) {
+      console.error('Network error fetch data', error)
+    }
+  }
 
   return (
     <div className="relative">
@@ -75,7 +99,13 @@ const DropdownUser = () => {
           dropdownOpen === true ? 'block' : 'hidden'
         }`}
       >
-        <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-red-300 lg:text-base">
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            doLogout()
+          }}
+          className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-red-300 lg:text-base"
+        >
           <svg
             className="fill-current"
             width="22"
