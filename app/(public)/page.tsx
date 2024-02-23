@@ -14,6 +14,8 @@ export default function Home() {
             alt="kelvin mijaya portrait"
             className="aspect-square rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
             src={ImgPortrait}
+            width={640}
+            height={640}
           />
         </div>
       </div>

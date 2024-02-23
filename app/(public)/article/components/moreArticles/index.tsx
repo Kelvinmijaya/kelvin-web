@@ -1,9 +1,17 @@
 'use client'
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 import useSWRInfinite from 'swr/infinite'
 import {useInView} from 'react-intersection-observer'
-import {ResponseArticleType, ArticleItemType} from '../types/articleType'
-import ArticleListItem from './articleListItem'
+
+// Types
+import {ResponseArticleType, ArticleItemType} from '../../types/articleType'
+
+// Components
+import ArticleListItem from '../articleListItem'
+
+// Libs
+import Fetcher from '../../../utils/fetcher'
+import SwrConfig from '../../../utils/swrConfig'
 
 interface Props {
   nextCursor: string
@@ -16,21 +24,12 @@ interface SWRFormat {
   size: number
   setSize: any
   mutate: any
+  isValidating: boolean
 }
 
-const fetcher = async (url: string) =>
-  fetch(url, {
-    mode: 'cors',
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then((r) => r.json())
-
-export default function MoreArticleList({nextCursor}: Props) {
-  // fetch data article
-  const {data, error, isLoading, size, setSize, mutate}: SWRFormat =
+export default function MoreArticles({nextCursor}: Props) {
+  // fetch data article for page 2 and so on
+  const {data, error, isLoading, size, setSize, isValidating}: SWRFormat =
     useSWRInfinite(
       (pageIndex: number, previousPageData: ResponseArticleType) => {
         // first page, we don't have `previousPageData`
@@ -47,28 +46,19 @@ export default function MoreArticleList({nextCursor}: Props) {
           process.env.NEXT_PUBLIC_API_URL
         }/article/list?num=${4}&cursor=${previousPageData.nextCursor}`
       },
-      fetcher,
-      {
-        initialSize: 1,
-        revalidateAll: true,
-        revalidateFirstPage: false,
-        revalidateIfStale: true,
-        revalidateOnReconnect: true,
-        persistSize: false,
-        parallel: false,
-      },
+      Fetcher,
+      SwrConfig,
     )
 
-  const {ref, inView, entry} = useInView({
-    /* Optional options */
-    threshold: 0,
+  const {ref, inView} = useInView({
+    threshold: 1,
   })
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !isValidating) {
       setSize(size + 1)
     }
-  }, [inView])
+  }, [inView, isValidating, setSize, size])
 
   if (isLoading) {
     return <>Loading...</>
@@ -97,7 +87,9 @@ export default function MoreArticleList({nextCursor}: Props) {
             )
           }),
         )}
-      {data && data[data.length - 1].nextCursor !== '' && <div ref={ref}></div>}
+      {data && data[data.length - 1].nextCursor !== '' && (
+        <div ref={ref}>{isLoading && 'Loading..'}</div>
+      )}
     </>
   )
 }

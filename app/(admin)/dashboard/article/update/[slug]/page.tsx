@@ -180,7 +180,7 @@ export default function UpdateArticle({params}: {params: {slug: string}}) {
         content: data.content,
       })
     }
-  }, [data, isLoading])
+  }, [data, isLoading, formData.title])
 
   if ((!data && !isLoading) || !Number(params.slug)) {
     return (

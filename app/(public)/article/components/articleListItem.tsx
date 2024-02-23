@@ -7,7 +7,6 @@ interface FormatDate {
 }
 
 export default function ArticleListItem({
-  id,
   url,
   title,
   content,

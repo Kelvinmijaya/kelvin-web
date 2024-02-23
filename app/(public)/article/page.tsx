@@ -1,11 +1,8 @@
 import dynamic from 'next/dynamic'
 import {ResponseArticleType, ArticleItemType} from './types/articleType'
 import ArticleListItem from './components/articleListItem'
+import MoreArticlesIo from './components/moreArticles/io'
 import useGetArticles from './hooks/useGetArticles'
-
-const MoreArticles = dynamic(() => import('./components/moreArticles'), {
-  ssr: false,
-})
 
 export default async function Article() {
   const data: ResponseArticleType = await useGetArticles({
@@ -42,7 +39,7 @@ export default async function Article() {
                 )
               })}
             {data && data.nextCursor !== '' && (
-              <MoreArticles nextCursor={data.nextCursor} />
+              <MoreArticlesIo nextCursor={data.nextCursor} />
             )}
           </div>
         </div>
