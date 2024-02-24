@@ -13,7 +13,7 @@ export default function NotFound() {
       <Link className="text-center" href="/">
         <div
           aria-hidden="true"
-          className="relative z-10 mt-24 relative items-center text-sm font-medium text-red-400"
+          className="relative z-10 mt-24 items-center text-sm font-medium text-red-400"
         >
           Back to homepage
         </div>

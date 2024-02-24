@@ -3,15 +3,15 @@ import {useEffect} from 'react'
 import useSWRInfinite from 'swr/infinite'
 import {useInView} from 'react-intersection-observer'
 
+// Libs
+import Fetcher from '@PublicUtils/fetcher'
+import SwrConfig from '@PublicUtils/swrConfig'
+
 // Types
 import {ResponseArticleType, ArticleItemType} from '../../types/articleType'
 
 // Components
 import ArticleListItem from '../articleListItem'
-
-// Libs
-import Fetcher from '../../../utils/fetcher'
-import SwrConfig from '../../../utils/swrConfig'
 
 interface Props {
   nextCursor: string
@@ -66,16 +66,12 @@ export default function MoreArticles({nextCursor}: Props) {
     }
   }, [inView, isValidating, setSize, size])
 
-  if (isLoading) {
-    return <>Loading...</>
-  }
-
-  if (!data && !isLoading && error) {
-    return <div className="text-red-500">Error fetching the article.</div>
-  }
-
   return (
     <>
+      {isLoading && <div>Loading...</div>}
+      {!data && !isLoading && error && (
+        <div className="text-red-500">Error fetching the article.</div>
+      )}
       {data &&
         data.map((item) =>
           item.data.map((articleItem: ArticleItemType, i: number) => {

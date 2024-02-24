@@ -1,3 +1,4 @@
+import type {NextComponentType, NextPageContext} from 'next'
 import {ArticleItemType} from '../types/articleType'
 import FormatDateToString from '../helpers/formatDateToString'
 
@@ -6,13 +7,11 @@ interface FormatDate {
   formatDate: string
 }
 
-export default function ArticleListItem({
-  url,
-  title,
-  content,
-  type,
-  updated_at,
-}: ArticleItemType) {
+const ArticleListItem: NextComponentType<
+  NextPageContext,
+  {},
+  ArticleItemType
+> = ({url, title, content, type, updated_at}: ArticleItemType) => {
   const {formatDateList, formatDate}: FormatDate =
     FormatDateToString(updated_at)
 
@@ -70,3 +69,5 @@ export default function ArticleListItem({
     </article>
   )
 }
+
+export default ArticleListItem

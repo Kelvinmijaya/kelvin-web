@@ -1,6 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
-import IntersectionObserver from '../../../components/intersectionObserver'
+import IntersectionObserver from '@PublicComponents/intersectionObserver'
 
 const MoreArticles = dynamic(() => import('./index'), {
   ssr: false,
