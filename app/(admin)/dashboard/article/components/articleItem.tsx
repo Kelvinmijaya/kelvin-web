@@ -2,7 +2,7 @@ import type {NextComponentType, NextPageContext} from 'next'
 import Link from 'next/link'
 
 import type {ArticleItemType} from '../types/articleType'
-import type {DialogDetail} from '../types/dialogType'
+import type {DialogDetail} from '../types/articleDialogType'
 
 type ArticleItemProps = ArticleItemType & {
   setOpenDialog: (args: DialogDetail) => void
