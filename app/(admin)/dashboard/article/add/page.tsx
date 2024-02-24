@@ -2,18 +2,14 @@
 import React, {useState} from 'react'
 import DOMPurify from 'dompurify'
 
-interface FormData {
+type FormData = {
   title: string
   type: string
   url: string
   content: string
 }
 
-interface Errors {
-  title: string
-  type: string
-  url: string
-  content: string
+type Errors = FormData & {
   fetchError: string
 }
 
@@ -81,7 +77,7 @@ export default function AddArticle() {
       fetchError: '',
     }
 
-    await setErrors(newErrors)
+    setErrors(newErrors)
 
     if (
       !newErrors.title &&
@@ -113,8 +109,8 @@ export default function AddArticle() {
 
         const jsonData = await response.json()
 
+        // Handle successful add new article
         if (response.ok) {
-          // Handle successful add new article
           window.scrollTo(0, 0)
           setFormData({
             title: '',

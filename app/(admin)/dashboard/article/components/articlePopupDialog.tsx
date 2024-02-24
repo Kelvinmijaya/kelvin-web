@@ -3,29 +3,18 @@ import {Fragment, useRef, useState} from 'react'
 import {Dialog, Transition} from '@headlessui/react'
 import useSWR from 'swr'
 
-interface OpenDialog {
-  category: string
-  isOpen: boolean
-  id: number
+import type {PopupDialogProps} from '../types/articleDialogType'
+import type {ArticleItemType} from '../types/articleType'
+
+//SWR Utils
+import {fetcher} from '../../../utils/swrUtils'
+import type {SWRTypeFormat} from '../../../utils/swrUtils'
+
+type ArticleDetailSWR = SWRTypeFormat & {
+  data: ArticleItemType
 }
 
-interface MyNextComponentProps {
-  mutate: any
-  openDialog: OpenDialog
-  setOpen: (args: OpenDialog) => void
-}
-
-const fetcher = (url: string) =>
-  fetch(url, {
-    mode: 'cors',
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then((r) => r.json())
-
-const PopupDialog: React.FC<MyNextComponentProps> = ({
+const ArticlePopupDialog: React.FC<PopupDialogProps> = ({
   mutate,
   openDialog,
   setOpen,
@@ -34,7 +23,7 @@ const PopupDialog: React.FC<MyNextComponentProps> = ({
   const [loading, setLoading] = useState(false)
 
   // fetch detail
-  const {data, error} = useSWR(
+  const {data, error, isLoading}: ArticleDetailSWR = useSWR(
     openDialog.id > 0 && openDialog.category === 'detail'
       ? `${process.env.NEXT_PUBLIC_API_URL}/article/detail/${openDialog.id}`
       : null,
@@ -135,22 +124,34 @@ const PopupDialog: React.FC<MyNextComponentProps> = ({
                           </p>
                         </div>
                       )}
-                      {openDialog.category === 'detail' && data && !error && (
-                        <div className="mt-2">
-                          <h4 className="text-base text-gray-700">Title</h4>
-                          <p className="text-sm text-gray-500">{data.title}</p>
-                          <h4 className="text-base text-gray-700 mt-6">Type</h4>
-                          <p className="text-sm text-gray-500">{data.type}</p>
-                          <h4 className="text-base text-gray-700 mt-6">URL</h4>
-                          <p className="text-sm text-gray-500">{data.url}</p>
-                          <h4 className="text-base text-gray-700 mt-6">
-                            Content
-                          </h4>
-                          <p className="text-sm text-gray-500">
-                            {data.content}
-                          </p>
-                        </div>
+                      {openDialog.category === 'detail' && isLoading && (
+                        <>Loading..</>
                       )}
+                      {openDialog.category === 'detail' &&
+                        !isLoading &&
+                        !error &&
+                        data && (
+                          <div className="mt-2">
+                            <h4 className="text-base text-gray-700">Title</h4>
+                            <p className="text-sm text-gray-500">
+                              {data.title}
+                            </p>
+                            <h4 className="text-base text-gray-700 mt-6">
+                              Type
+                            </h4>
+                            <p className="text-sm text-gray-500">{data.type}</p>
+                            <h4 className="text-base text-gray-700 mt-6">
+                              URL
+                            </h4>
+                            <p className="text-sm text-gray-500">{data.url}</p>
+                            <h4 className="text-base text-gray-700 mt-6">
+                              Content
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              {data.content}
+                            </p>
+                          </div>
+                        )}
                     </div>
                   </div>
                 </div>
@@ -191,4 +192,4 @@ const PopupDialog: React.FC<MyNextComponentProps> = ({
   )
 }
 
-export default PopupDialog
+export default ArticlePopupDialog

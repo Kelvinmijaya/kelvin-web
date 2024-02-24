@@ -1,9 +1,11 @@
+import type {NextPage} from 'next'
+
 import Image from 'next/image'
 import Tokopedia from '../images/tokopedia.jpeg'
 import Ovo from '../images/ovo.jpeg'
 import Bounche from '../images/bounche.jpeg'
 
-export default function Portfolio() {
+const Portfolio: NextPage = () => {
   return (
     <div className="mx-auto max-w-2xl lg:max-w-5xl">
       <header className="max-w-2xl">
@@ -137,3 +139,5 @@ export default function Portfolio() {
     </div>
   )
 }
+
+export default Portfolio

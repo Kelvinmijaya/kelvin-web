@@ -2,7 +2,7 @@ import type {NextComponentType, NextPageContext} from 'next'
 import {ArticleItemType} from '../types/articleType'
 import FormatDateToString from '../helpers/formatDateToString'
 
-interface FormatDate {
+type FormatDate = {
   formatDateList: string
   formatDate: string
 }

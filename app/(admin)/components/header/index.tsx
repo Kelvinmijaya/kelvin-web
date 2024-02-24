@@ -1,7 +1,5 @@
 'use client'
-import Link from 'next/link'
 import DropdownUser from './dropDownUser'
-import Image from 'next/image'
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined

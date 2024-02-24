@@ -1,5 +1,6 @@
 'use client'
 import {useEffect} from 'react'
+import type {NextComponentType, NextPageContext} from 'next'
 import useSWRInfinite from 'swr/infinite'
 import {useInView} from 'react-intersection-observer'
 
@@ -13,11 +14,11 @@ import {ResponseArticleType, ArticleItemType} from '../../types/articleType'
 // Components
 import ArticleListItem from '../articleListItem'
 
-interface Props {
+type Props = {
   nextCursor: string
 }
 
-interface SWRFormat {
+type SWRFormat = {
   data: any[] | undefined
   error: any
   isLoading: boolean
@@ -27,7 +28,9 @@ interface SWRFormat {
   isValidating: boolean
 }
 
-export default function MoreArticles({nextCursor}: Props) {
+const MoreArticles: NextComponentType<NextPageContext, {}, Props> = ({
+  nextCursor,
+}: Props) => {
   // fetch data article for page 2 and so on
   const {data, error, isLoading, size, setSize, isValidating}: SWRFormat =
     useSWRInfinite(
@@ -37,7 +40,7 @@ export default function MoreArticles({nextCursor}: Props) {
           return [
             `${
               process.env.NEXT_PUBLIC_API_URL
-            }/article/list?num=${4}&cursor=${nextCursor}`,
+            }/article/list?num=${5}&cursor=${nextCursor}`,
             'GET',
           ]
 
@@ -46,7 +49,7 @@ export default function MoreArticles({nextCursor}: Props) {
 
         // add the cursor to the API endpoint
         return [
-          `${process.env.NEXT_PUBLIC_API_URL}/article/list?num=${4}&cursor=${
+          `${process.env.NEXT_PUBLIC_API_URL}/article/list?num=${5}&cursor=${
             previousPageData.nextCursor
           }`,
           'GET',
@@ -73,8 +76,8 @@ export default function MoreArticles({nextCursor}: Props) {
         <div className="text-red-500">Error fetching the article.</div>
       )}
       {data &&
-        data.map((item) =>
-          item.data.map((articleItem: ArticleItemType, i: number) => {
+        data.map(({data: item}) =>
+          item.map((articleItem: ArticleItemType, i: number) => {
             return (
               <ArticleListItem
                 key={`article-item-more-${i}`}
@@ -95,3 +98,5 @@ export default function MoreArticles({nextCursor}: Props) {
     </>
   )
 }
+
+export default MoreArticles

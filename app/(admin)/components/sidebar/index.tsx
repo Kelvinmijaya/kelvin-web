@@ -113,9 +113,7 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}: SidebarProps) => {
                 <Link
                   href="/dashboard"
                   className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium  duration-300 ease-in-out hover:text-red-300 ${
-                    pathname.includes('dashboard')
-                      ? 'text-red-300'
-                      : 'text-zinc-800'
+                    pathname === '/dashboard' ? 'text-red-300' : 'text-zinc-800'
                   }`}
                 >
                   <svg
@@ -149,21 +147,16 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}: SidebarProps) => {
               {/* <!-- Menu Item Home --> */}
 
               {/* <!-- Menu Item Article --> */}
-              <SidebarLinkGroup
-                activeCondition={
-                  pathname === '/dashboard/article' ||
-                  pathname.includes('dashboard/article')
-                }
-              >
+              <SidebarLinkGroup activeCondition={pathname.includes('article')}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <Link
                         href="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-zinc-800 duration-300 ease-in-out hover:text-red-300 ${
-                          (pathname === '/dashboard/article' ||
-                            pathname.includes('article')) &&
-                          'text-red-300'
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium  duration-300 ease-in-out hover:text-red-300 ${
+                          pathname.includes('article')
+                            ? 'text-red-300'
+                            : 'text-zinc-800'
                         }`}
                         onClick={(e) => {
                           e.preventDefault()
@@ -242,7 +235,7 @@ const Sidebar = ({sidebarOpen, setSidebarOpen}: SidebarProps) => {
                           <li>
                             <Link
                               href="/dashboard/article/add"
-                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-zinc-600 duration-300 ease-in-out hover:text-red-300 ${
+                              className={`group relative flex items-center gap-2.5 rounded-md px-4 font-medium duration-300 ease-in-out hover:text-red-300 ${
                                 pathname === '/dashboard/article/add'
                                   ? 'text-red-300'
                                   : 'text-zinc-600'

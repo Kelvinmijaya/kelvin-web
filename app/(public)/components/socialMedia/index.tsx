@@ -1,4 +1,6 @@
-export default function SocialMedia() {
+import type {NextComponentType, NextPageContext} from 'next'
+
+const SocialMedia: NextComponentType<NextPageContext> = () => {
   return (
     <ul role="list">
       <li className="flex">
@@ -75,3 +77,5 @@ export default function SocialMedia() {
     </ul>
   )
 }
+
+export default SocialMedia

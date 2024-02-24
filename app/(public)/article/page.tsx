@@ -1,12 +1,13 @@
-import dynamic from 'next/dynamic'
+import type {NextPage} from 'next'
+
 import {ResponseArticleType, ArticleItemType} from './types/articleType'
 import ArticleListItem from './components/articleListItem'
 import MoreArticlesIo from './components/moreArticles/io'
 import useGetArticles from './hooks/useGetArticles'
 
-export default async function Article() {
-  const data: ResponseArticleType = await useGetArticles({
-    item: 4,
+const Article: NextPage = async () => {
+  const {data, nextCursor}: ResponseArticleType = await useGetArticles({
+    item: 5,
   })
 
   return (
@@ -23,8 +24,8 @@ export default async function Article() {
               <div className="text-red-500">Error fetching the article.</div>
             )}
             {data &&
-              data.data.length > 0 &&
-              data.data.map((item: ArticleItemType, i) => {
+              data.length > 0 &&
+              data.map((item: ArticleItemType, i) => {
                 return (
                   <ArticleListItem
                     key={`article-item-${i}`}
@@ -38,12 +39,12 @@ export default async function Article() {
                   />
                 )
               })}
-            {data && data.nextCursor !== '' && (
-              <MoreArticlesIo nextCursor={data.nextCursor} />
-            )}
+            {nextCursor !== '' && <MoreArticlesIo nextCursor={nextCursor} />}
           </div>
         </div>
       </div>
     </div>
   )
 }
+
+export default Article

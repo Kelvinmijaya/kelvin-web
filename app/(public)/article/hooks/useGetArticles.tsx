@@ -1,14 +1,14 @@
-interface Props {
+type articleItemType = {
   item: number
 }
 
-async function useGetArticles({item}: Props) {
+async function useGetArticles({item}: articleItemType) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/article/list?num=${item}`,
   )
 
   if (!res.ok) {
-    return null
+    return {data: null, nextCursor: ''}
   }
 
   return res.json()

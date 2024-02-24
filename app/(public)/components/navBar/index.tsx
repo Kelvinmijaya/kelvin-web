@@ -9,12 +9,8 @@ import {usePathname} from 'next/navigation'
 import PP from './images/kelvinheader.jpg'
 import IconGithub from './images/icon-github.svg'
 
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export default function NavBar() {
-  interface navigationList {
+  type navigationList = {
     title: string
     path: string
   }
@@ -24,7 +20,7 @@ export default function NavBar() {
     {title: 'Portfolio', path: '/portfolio'},
     {title: 'Article', path: '/article'},
   ]
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)

@@ -2,7 +2,6 @@
 import {useState, useEffect} from 'react'
 import Sidebar from '../components/sidebar'
 import Header from '../components/header'
-import Loader from '../components/common/loader'
 
 export default function DashboardLayout({
   children, // will be a page or nested layout

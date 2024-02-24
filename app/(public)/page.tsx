@@ -16,6 +16,7 @@ export default function Home() {
             src={ImgPortrait}
             width={640}
             height={640}
+            priority={true}
           />
         </div>
       </div>

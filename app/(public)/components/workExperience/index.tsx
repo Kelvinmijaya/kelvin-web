@@ -1,12 +1,14 @@
+import type {NextComponentType, NextPageContext} from 'next'
 import Image from 'next/image'
 
-import useGetWorkExperience from '../../hooks/useGetWorkExperience'
+// Hooks
+import useGetWorkExperience from './hooks/useGetWorkExperience'
 
 import Tokopedia from '../../images/tokopedia.jpeg'
 import Ovo from '../../images/ovo.jpeg'
 import Bounche from '../../images/bounche.jpeg'
 
-export default function WorkExperience() {
+const Index: NextComponentType<NextPageContext> = () => {
   const experienceList = useGetWorkExperience()
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40 mt-5">
@@ -105,3 +107,5 @@ export default function WorkExperience() {
     </div>
   )
 }
+
+export default Index
