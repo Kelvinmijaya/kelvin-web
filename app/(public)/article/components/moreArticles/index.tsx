@@ -34,17 +34,23 @@ export default function MoreArticles({nextCursor}: Props) {
       (pageIndex: number, previousPageData: ResponseArticleType) => {
         // first page, we don't have `previousPageData`
         if (pageIndex === 0)
-          return `${
-            process.env.NEXT_PUBLIC_API_URL
-          }/article/list?num=${4}&cursor=${nextCursor}`
+          return [
+            `${
+              process.env.NEXT_PUBLIC_API_URL
+            }/article/list?num=${4}&cursor=${nextCursor}`,
+            'GET',
+          ]
 
         // reached the end
         if (previousPageData && !previousPageData.data) return null
 
         // add the cursor to the API endpoint
-        return `${
-          process.env.NEXT_PUBLIC_API_URL
-        }/article/list?num=${4}&cursor=${previousPageData.nextCursor}`
+        return [
+          `${process.env.NEXT_PUBLIC_API_URL}/article/list?num=${4}&cursor=${
+            previousPageData.nextCursor
+          }`,
+          'GET',
+        ]
       },
       Fetcher,
       SwrConfig,

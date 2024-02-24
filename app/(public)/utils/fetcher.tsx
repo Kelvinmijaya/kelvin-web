@@ -1,7 +1,7 @@
-const Fetcher = async (url: string) =>
+const Fetcher = async ([url, method]: string[]) =>
   fetch(url, {
+    method,
     mode: 'cors',
-    method: 'GET',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
