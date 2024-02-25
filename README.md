@@ -1,6 +1,7 @@
 ## Intro
-This project is my continuous playground where I can implement or conduct POCs for the latest technology.
-It covers both backend and frontend areas because i need to add more complexity to my POC.
+This project is for my personal website and continuous playground where I can implement or conduct proofs of concept (POCs) for the latest technology. It covers both backend and frontend areas because I need to add more complexity to my POC.
+https://www.kelvinmijaya.com
+
 
 ## High Level Architecture
 ![kelvin web](https://github.com/Kelvinmijaya/kelvin-web/raw/master/files/kelvin-web-architecture.jpeg)
