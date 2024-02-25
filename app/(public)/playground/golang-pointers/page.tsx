@@ -1,13 +1,13 @@
 import type {NextPage} from 'next'
 
-const Page: NextPage = () => {
+const GolangPointers: NextPage = () => {
   return (
     <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
       <div className="flex max-w-xl flex-col items-start justify-between">
         <ul>
           <li>package main</li>
           <li>&nbsp;</li>
-          <li>import "fmt"</li>
+          <li>import &quot;fmt&quot;</li>
           <li>&nbsp;</li>
           <li>func main&#40;&#41; &#123;</li>
           <li className="pl-4">a &#58;&#61; 4</li>
@@ -66,4 +66,4 @@ const Page: NextPage = () => {
   )
 }
 
-export default Page
+export default GolangPointers
