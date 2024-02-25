@@ -1,5 +1,5 @@
 ## Intro
-This project is for my personal website and continuous playground where I can implement or conduct proofs of concept (POCs) for the latest technology. It covers both backend and frontend areas because I need to add more complexity to my POC.
+This project is for my personal website and playground where I can implement proofs of concept (POCs) for the latest technology. It covers both backend and frontend areas because I want to add more complexity to my POC.
 https://www.kelvinmijaya.com
 
 
