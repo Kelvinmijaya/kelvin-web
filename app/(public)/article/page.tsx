@@ -5,6 +5,8 @@ import ArticleListItem from './components/articleListItem'
 import MoreArticlesIo from './components/moreArticles/io'
 import useGetArticles from './hooks/useGetArticles'
 
+export const dynamic = 'force-dynamic'
+
 const Article: NextPage = async () => {
   const {data, nextCursor}: ResponseArticleType = await useGetArticles({
     item: 5,
