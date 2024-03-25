@@ -18,6 +18,7 @@ export default function NavBar() {
   const navList: ReadonlyArray<navigationList> = [
     {title: 'Home', path: '/'},
     {title: 'Portfolio', path: '/portfolio'},
+    {title: 'Tech Gear', path: '/gear'},
     {title: 'Article', path: '/article'},
   ]
   const [isOpen, setIsOpen] = useState(false)

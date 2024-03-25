@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@PublicComponents/*": ["./app/(public)/components/*"],
-      "@PublicUtils/*": ["./app/(public)/utils/*"]
+      "@PublicUtils/*": ["./app/(public)/utils/*"],
+      "@shared/*": ["./app/shared/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
