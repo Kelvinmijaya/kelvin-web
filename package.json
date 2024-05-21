@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": false,
   "scripts": {
-    "dev": "next dev -p 3333",
+    "dev": "next dev -p 9292",
     "build": "next build",
-    "start": "next start -p 3333",
+    "start": "next start -p 9292",
     "lint": "next lint",
     "test": "vitest",
     "coverage": "vitest run --coverage.enabled=true"
@@ -13,7 +13,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "dompurify": "^3.0.8",
-    "next": "^13.5.6",
+    "next": "^14.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.8.0",
