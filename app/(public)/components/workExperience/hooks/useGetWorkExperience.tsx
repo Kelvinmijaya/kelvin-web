@@ -1,6 +1,12 @@
 export default function useGetWorkExperience() {
   return [
     {
+      company: 'Sticker Mule',
+      title: 'Software Engineer',
+      from: '2024',
+      until: 'Now',
+    },
+    {
       company: 'Tokopedia',
       title: 'Software Engineering Manager',
       from: '2021',

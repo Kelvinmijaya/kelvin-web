@@ -4,6 +4,7 @@ import Image from 'next/image'
 // Hooks
 import useGetWorkExperience from './hooks/useGetWorkExperience'
 
+import Stickermule from '../../images/stickermule.jpg'
 import Tokopedia from '../../images/tokopedia.jpeg'
 import Ovo from '../../images/ovo.jpeg'
 import Bounche from '../../images/bounche.jpeg'
@@ -36,9 +37,12 @@ const Index: NextComponentType<NextPageContext> = () => {
       </h2>
       <ol className="mt-6 space-y-4">
         {experienceList.map((item, i) => {
-          let companyImage = Tokopedia
+          let companyImage = Stickermule
 
           switch (item.company) {
+            case 'Sticker Mule':
+              companyImage = Stickermule
+              break
             case 'Tokopedia':
               companyImage = Tokopedia
               break

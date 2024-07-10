@@ -1,16 +1,16 @@
-import type {NextPage} from 'next'
+import type { NextPage } from 'next'
 
-import {ResponseArticleType, ArticleItemType} from './types/articleType'
-import ArticleListItem from './components/articleListItem'
-import MoreArticlesIo from './components/moreArticles/io'
-import useGetArticles from './hooks/useGetArticles'
+// import {ResponseArticleType, ArticleItemType} from './types/articleType'
+// import ArticleListItem from './components/articleListItem'
+// import MoreArticlesIo from './components/moreArticles/io'
+// import useGetArticles from './hooks/useGetArticles'
 
 export const dynamic = 'force-dynamic'
 
 const Article: NextPage = async () => {
-  const {data, nextCursor}: ResponseArticleType = await useGetArticles({
-    item: 5,
-  })
+  // const {data, nextCursor}: ResponseArticleType = await useGetArticles({
+  //   item: 5,
+  // })
 
   return (
     <div className="mx-auto max-w-2xl lg:max-w-5xl">
@@ -22,7 +22,8 @@ const Article: NextPage = async () => {
       <div className="mt-16 sm:mt-20">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
-            {data === null && (
+            <iframe src='https://sudden-pharaoh-c6a.notion.site/Article-ea16ee3789104aa9b3484c7eadb3fe90'></iframe>
+            {/* {data === null && (
               <div className="text-red-500">Error fetching the article.</div>
             )}
             {data &&
@@ -41,7 +42,7 @@ const Article: NextPage = async () => {
                   />
                 )
               })}
-            {nextCursor !== '' && <MoreArticlesIo nextCursor={nextCursor} />}
+            {nextCursor !== '' && <MoreArticlesIo nextCursor={nextCursor} />} */}
           </div>
         </div>
       </div>
