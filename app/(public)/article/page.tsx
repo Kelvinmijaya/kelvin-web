@@ -22,7 +22,6 @@ const Article: NextPage = async () => {
       <div className="mt-16 sm:mt-20">
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
-            <iframe src='https://sudden-pharaoh-c6a.notion.site/Article-ea16ee3789104aa9b3484c7eadb3fe90'></iframe>
             {/* {data === null && (
               <div className="text-red-500">Error fetching the article.</div>
             )}

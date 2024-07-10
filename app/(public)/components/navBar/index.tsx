@@ -1,10 +1,10 @@
 'use client'
 
-import {Fragment, useState} from 'react'
-import {Dialog, Transition} from '@headlessui/react'
+import { Fragment, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import {usePathname} from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 import PP from './images/kelvinheader.jpg'
 import IconGithub from './images/icon-github.svg'
@@ -16,10 +16,9 @@ export default function NavBar() {
   }
   const pathname = usePathname()
   const navList: ReadonlyArray<navigationList> = [
-    {title: 'Home', path: '/'},
-    {title: 'Portfolio', path: '/portfolio'},
-    {title: 'Tech Gear', path: '/gear'},
-    {title: 'Article', path: '/article'},
+    { title: 'Home', path: '/' },
+    { title: 'Portfolio', path: '/portfolio' },
+    { title: 'Tech Gear', path: '/gear' },
   ]
   const [isOpen, setIsOpen] = useState(false)
 
@@ -42,7 +41,7 @@ export default function NavBar() {
               height={64}
               alt="kelvin mijaya profile picture"
               src={PP}
-              style={{color: 'transparant'}}
+              style={{ color: 'transparant' }}
             />
           </Link>
         </div>
@@ -103,11 +102,10 @@ export default function NavBar() {
                           >
                             <Link
                               onClick={closeModal}
-                              className={` group flex w-full items-center text-center rounded-md px-4 py-4 text-sm ${
-                                list.path === pathname
+                              className={` group flex w-full items-center text-center rounded-md px-4 py-4 text-sm ${list.path === pathname
                                   ? 'text-red-400 dark:text-red-300'
                                   : 'text-gray-900 hover:text-red-400 dark:hover:text-red-300'
-                              }`}
+                                }`}
                               href={list.path}
                             >
                               {list.title}
@@ -129,11 +127,10 @@ export default function NavBar() {
               return (
                 <li key={`nav-list-${i}`}>
                   <Link
-                    className={`relative block px-3 py-2 transition ${
-                      list.path === pathname
+                    className={`relative block px-3 py-2 transition ${list.path === pathname
                         ? 'text-red-400 dark:text-red-300'
                         : 'hover:text-red-400 dark:hover:text-red-300'
-                    }`}
+                      }`}
                     href={list.path}
                   >
                     {list.title}
@@ -159,9 +156,9 @@ export default function NavBar() {
             height={24}
             alt="github icon"
             src={IconGithub}
-            style={{color: 'transparant'}}
+            style={{ color: 'transparant' }}
           />
-          <span className="ml-3" style={{lineHeight: '24px'}}>
+          <span className="ml-3" style={{ lineHeight: '24px' }}>
             Follow on GitHub
           </span>
         </a>
