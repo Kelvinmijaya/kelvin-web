@@ -6,6 +6,7 @@ import SocialMedia from './components/socialMedia'
 import ImgPortrait from './images/portrait.jpg'
 
 export default function Home() {
+  const yearOfExperience = new Date().getFullYear() - 2010
   return (
     <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12 sm:gap-y-8">
       <div className="lg:pl-20">
@@ -34,7 +35,7 @@ export default function Home() {
             seamless functionality.
           </p>
           <p>
-            I&apos;ve been on this journey for 10 years, tackling diverse
+            I&apos;ve been on this journey for {yearOfExperience} years, tackling diverse
             projects and challenges – from people management to ensuring every
             button click is as smooth as butter, I&apos;ve got it covered. I
             believe that creative problem-solving and staying in the loop with
