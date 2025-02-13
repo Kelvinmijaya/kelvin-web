@@ -6,7 +6,7 @@ import SocialMedia from './components/socialMedia'
 import ImgPortrait from './images/portrait.jpg'
 
 export default function Home() {
-  const yearOfExperience = new Date().getFullYear() - 2010
+  const yearOfExperience = new Date().getFullYear() - 2012
   return (
     <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12 sm:gap-y-8">
       <div className="lg:pl-20">
