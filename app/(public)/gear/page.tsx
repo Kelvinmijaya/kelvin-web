@@ -12,7 +12,7 @@ type SpecType = {
 }
 
 const pcSpec: SpecType[] = [
-  { name: 'Main Monitor', value: 'Samsung Oddyssey G7 27 inch' },
+  { name: 'Main Monitor', value: 'Asus ROG STRIX XG27ACMES 27 inch' },
   { name: 'Secondary Monitor', value: 'LG Ultragear 27 inch (Vertical)' },
   { name: 'PC Case', value: 'Lian li o11 dynamic mini' },
   { name: 'CPU', value: 'Ryzen 5 5600x + NZXT kraken x63' },

@@ -23,23 +23,27 @@ export default function Home() {
       </div>
       <div className="lg:order-first lg:row-span-2">
         <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          I&apos;m Kelvin Mijaya.
-          <br />I live in Indonesia.
+          Hi👋
+          <br />
+          I&apos;m Kelvin Mijaya
         </h1>
+        <h3 className="text-2xl font-bold tracking-tight text-zinc-600 dark:text-zinc-100 sm:text-3xl pt-2">
+          a software engineer based in Indonesia
+        </h3>
         <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
           <p>
-            👋 I&apos;m a Senior Software Engineer who loves building cool stuff
-            with React or Javascript. Over the years, I&apos;ve become the go-to
-            person for crafting awesome web applications that not only look good
-            but also come with good performance, scalability, resilience, and
-            seamless functionality.
+            I love building cool stuff with React or Javascript. Over the years,
+            I&apos;ve become the go-to person for crafting awesome web
+            applications that not only look good but also come with good
+            performance, scalability, resilience, and seamless functionality.
           </p>
           <p>
-            I&apos;ve been on this journey for {yearOfExperience} years, tackling diverse
-            projects and challenges – from people management to ensuring every
-            button click is as smooth as butter, I&apos;ve got it covered. I
-            believe that creative problem-solving and staying in the loop with
-            the latest tech trends will make a better version of everything.
+            I&apos;ve been on this journey for {yearOfExperience} years,
+            tackling diverse projects and challenges – from people management to
+            ensuring every button click is as smooth as butter, I&apos;ve got it
+            covered. I believe that creative problem-solving and staying in the
+            loop with the latest tech trends will make a better version of
+            everything.
           </p>
         </div>
         <WorkExperience />

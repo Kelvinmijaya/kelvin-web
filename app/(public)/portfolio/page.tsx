@@ -39,10 +39,19 @@ const Portfolio: NextPage = () => {
               </a>
             </h2>
             <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-              Developing Desktop and Mobile web using Next.js, CSS in JS, and
-              Graphql. <br />Part of Data development team. <br />
+              Developing Desktop and Mobile web using Next.js, CSS in JS,
+              Node.js, Graphql, Rails, and Go. <br />
+              I&apos;m currently part of the Finance Development team. <br />
               <br />
-              Mostly working on data tracking, reporting dashboards, third-party integration, GTM, and Google Analytics, I also generate reports in the backend.
+              My responsibilities include creating new features in the finance
+              area, fixing bugs, and improving code quality. I also handle
+              invoicing, payment methods across multiple countries, financial
+              adjustments, and reporting.
+              <br />
+              <br />
+              Previously, I was part of the Data team, where I worked on data
+              tracking, reporting dashboards, third-party integrations, GTM, and
+              Google Analytics. I also generated reports on the backend.
             </p>
             <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-red-400 dark:text-zinc-200">
               <svg
